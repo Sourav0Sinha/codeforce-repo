@@ -27,15 +27,17 @@ outputCopy
 Note
 The first interesting number is equal to 9.
 
+
 '''
 n = int(input())
+
 
 data = []
 for l in range(n):
     a = input()
     data.append(a)
   
-print(data)
+
 
 def S(x):
     str1 = str(x)
@@ -45,9 +47,23 @@ def S(x):
         
     return res
 
+def check(x,c):
+    q = int(x)
+    if x[0]=='8':
+        q %= 8*(10**(len(x)-1))
+        c += 8*(10**(len(x)-2))
+        q = str(q)
+        return check(q,c)
+    else:
+        return x,c
+    
 for i in data:
     count = 0
+    i,c = check(i,count)
+    
     q = int(i)
+    count += c
+
     for j in range(1,q+1):
         cmp1 = S(j)
         cmp2 = S(j+1)
